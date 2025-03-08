@@ -22,6 +22,8 @@ contract Variables {
     enum State { Created, Locked, Inactive }
     State public state;
 
+    event Added(uint value);
+
     function getGreeting() public pure returns (string memory) {
         return "Hello, World!";
     }
@@ -33,6 +35,12 @@ contract Variables {
 
     function add(uint _a, uint _b) public pure returns (uint) {
         return _a + _b;
+    }
+
+    function addWithEvent(uint _a, uint _b) public returns (uint ){
+        uint _c = _a + _b;
+        emit Added(_c);
+        return _c;
     }
 
     function getNameView() public view returns (string memory) {
